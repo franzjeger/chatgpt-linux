@@ -208,6 +208,14 @@ function newChat () {
   win.loadURL(APP_URL)
 }
 
+// Without a tray there is no way to bring a hidden window back, so fall back
+// to closing rather than stranding a running app with no UI.
+function hideToTray () {
+  if (!win || win.isDestroyed()) return
+  if (tray && store.get().closeToTray) win.hide()
+  else win.close()
+}
+
 function quit () {
   quitting = true
   app.quit()
@@ -251,7 +259,7 @@ function createMenu () {
         { type: 'separator' },
         { label: 'Settings file…', click: () => shell.openPath(store.FILE) },
         { type: 'separator' },
-        { label: 'Hide to tray', accelerator: 'CmdOrCtrl+W', click: () => win && win.hide() },
+        { label: 'Hide to tray', accelerator: 'CmdOrCtrl+W', click: hideToTray },
         { label: 'Quit', accelerator: 'CmdOrCtrl+Q', click: quit },
       ],
     },
