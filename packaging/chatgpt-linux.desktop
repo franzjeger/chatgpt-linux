@@ -1,0 +1,17 @@
+[Desktop Entry]
+Type=Application
+Name=ChatGPT
+GenericName=AI Assistant
+Comment=ChatGPT in a dedicated desktop window
+Exec=chatgpt-linux %U
+Icon=chatgpt-linux
+Terminal=false
+Categories=Network;Chat;Utility;
+Keywords=AI;GPT;OpenAI;Assistant;Chat;LLM;
+StartupNotify=true
+StartupWMClass=ChatGPT
+Actions=NewChat;
+
+[Desktop Action NewChat]
+Name=New chat
+Exec=chatgpt-linux

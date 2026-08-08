@@ -1,0 +1,8 @@
+node_modules/
+*.log
+
+# makepkg output
+pkg/
+src/*-build/
+*.pkg.tar.zst
+*.tar.gz

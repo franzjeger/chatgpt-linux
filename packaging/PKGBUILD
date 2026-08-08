@@ -1,0 +1,38 @@
+# Maintainer: franzjeger <https://github.com/franzjeger>
+#
+# Builds from the surrounding git checkout — clone the repo, then run
+# `makepkg -si` from this directory. There is nothing to compile: the app is
+# plain JavaScript running on the system Electron.
+
+pkgname=chatgpt-linux
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Unofficial ChatGPT desktop app for Linux (Electron wrapper around chatgpt.com)"
+arch=('any')
+url="https://github.com/franzjeger/chatgpt-linux"
+license=('MIT')
+depends=('electron43')
+options=('!strip' '!debug')
+
+package() {
+  local _root
+  _root="$(cd "${startdir}/.." && pwd)"
+  cd "${_root}"
+
+  install -dm755 "${pkgdir}/usr/lib/${pkgname}"
+  cp -r --no-preserve=ownership src assets package.json \
+    "${pkgdir}/usr/lib/${pkgname}/"
+  rm -f "${pkgdir}/usr/lib/${pkgname}/assets/screenshot.png"
+
+  install -Dm755 "packaging/${pkgname}.sh" "${pkgdir}/usr/bin/${pkgname}"
+  install -Dm644 "packaging/${pkgname}.desktop" \
+    "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+
+  local size
+  for size in 512 256 128 64 48 32 16; do
+    install -Dm644 "assets/icons/${size}.png" \
+      "${pkgdir}/usr/share/icons/hicolor/${size}x${size}/apps/${pkgname}.png"
+  done
+
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

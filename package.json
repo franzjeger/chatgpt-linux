@@ -1,0 +1,25 @@
+{
+  "name": "chatgpt-linux",
+  "productName": "ChatGPT",
+  "version": "1.0.0",
+  "description": "Unofficial ChatGPT desktop app for Linux — a dependency-free Electron wrapper around chatgpt.com",
+  "main": "src/main.js",
+  "license": "MIT",
+  "author": "franzjeger",
+  "homepage": "https://github.com/franzjeger/chatgpt-linux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franzjeger/chatgpt-linux.git"
+  },
+  "keywords": [
+    "chatgpt",
+    "openai",
+    "linux",
+    "electron",
+    "desktop"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "icons": "./scripts/build-icons.sh"
+  }
+}
