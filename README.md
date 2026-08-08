@@ -26,7 +26,7 @@ of their macOS build. You need your own ChatGPT account.
 - Single instance: a second launch focuses the running window
 - Voice mode works (microphone permission is granted; everything else is denied)
 - Links to other sites open in your default browser, never in the app frame
-- Sign-in via Google / Microsoft / Apple works — the app presents a plain Chrome
+- Sign-in with email or phone works — the app presents a plain Chrome
   user agent, because identity providers reject anything advertising Electron
 - Spell checking (English + Norwegian by default) with a right-click menu
 - Remembers window size, position, and zoom level
@@ -95,6 +95,21 @@ it from **File → Settings file…**, edit, and restart.
 
 ## Known limitations
 
+- **"Continue with Google" does not work.** Google answers with *"Couldn't sign
+  you in — this browser or app may not be secure."* The app sends a Chrome user
+  agent, but Chromium's client hints still report the brands `Chromium` and
+  `Not;A=Brand` without the `Google Chrome` brand that real Chrome sends, and
+  Google's sign-in reads the structured identity rather than the UA string.
+
+  This project deliberately does **not** fake those brands. The check exists to
+  stop embedded windows from capturing Google credentials, and an app rendering
+  your Google password prompt inside a window it controls is exactly the shape
+  that check is aimed at.
+
+  Sign in with your **email address** or **phone** on the ChatGPT login screen
+  instead — neither involves a third-party browser check. If your account has
+  only ever used Google SSO, set an OpenAI password via password reset in a
+  normal browser first, then use email + password here.
 - **Global hotkey on Wayland.** Global shortcuts are an X11 mechanism; a Wayland
   compositor owns the keyboard and will not hand out global grabs, so
   `toggleShortcut` may silently do nothing. Bind `chatgpt-linux` to a key in your
