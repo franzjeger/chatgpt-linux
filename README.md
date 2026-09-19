@@ -1,5 +1,9 @@
 # chatgpt-linux
 
+## Project Status
+**Active Development** — This project is currently being maintained and updated.
+
+
 An unofficial ChatGPT desktop app for Linux.
 
 OpenAI ships desktop apps for macOS and Windows. Linux only gets a "notify me"
