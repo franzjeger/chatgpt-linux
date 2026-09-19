@@ -72,31 +72,31 @@ There is nothing to `npm install` — the app has no dependencies.
 Settings live in `~/.config/chatgpt-linux/settings.json`, written on exit. Open
 it from **File → Settings file…**, edit, and restart.
 
-| Key | Default | What it does |
-| --- | --- | --- |
-| `closeToTray` | `true` | Closing the window hides it instead of quitting |
-| `startHidden` | `false` | Start in the tray (also available as `--hidden`) |
-| `toggleShortcut` | `"Control+Alt+G"` | Global show/hide hotkey; `""` disables it |
-| `spellcheckLanguages` | `["en-US", "nb"]` | [Chromium locale codes](https://source.chromium.org/chromium/chromium/src/+/main:third_party/hunspell_dictionaries/) |
-| `bounds`, `maximized`, `zoom` | — | Managed by the app; edit only if a window gets stranded |
+| Key                           | Default           | What it does                                                                                                         |
+| ----------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `closeToTray`                 | `true`            | Closing the window hides it instead of quitting                                                                      |
+| `startHidden`                 | `false`           | Start in the tray (also available as `--hidden`)                                                                     |
+| `toggleShortcut`              | `"Control+Alt+G"` | Global show/hide hotkey; `""` disables it                                                                            |
+| `spellcheckLanguages`         | `["en-US", "nb"]` | [Chromium locale codes](https://source.chromium.org/chromium/chromium/src/+/main:third_party/hunspell_dictionaries/) |
+| `bounds`, `maximized`, `zoom` | —                 | Managed by the app; edit only if a window gets stranded                                                              |
 
 ## Keyboard shortcuts
 
-| Shortcut | Action |
-| --- | --- |
-| `Ctrl+N` | New chat |
-| `Ctrl+W` | Hide to tray |
-| `Ctrl+Q` | Quit |
-| `Ctrl+R` | Reload |
-| `Ctrl` `+` / `-` / `0` | Zoom in / out / reset |
-| `F11` | Fullscreen |
-| `Alt` | Reveal the menu bar |
-| `Ctrl+Alt+G` | Show/hide from anywhere (see the caveat below) |
+| Shortcut               | Action                                         |
+| ---------------------- | ---------------------------------------------- |
+| `Ctrl+N`               | New chat                                       |
+| `Ctrl+W`               | Hide to tray                                   |
+| `Ctrl+Q`               | Quit                                           |
+| `Ctrl+R`               | Reload                                         |
+| `Ctrl` `+` / `-` / `0` | Zoom in / out / reset                          |
+| `F11`                  | Fullscreen                                     |
+| `Alt`                  | Reveal the menu bar                            |
+| `Ctrl+Alt+G`           | Show/hide from anywhere (see the caveat below) |
 
 ## Known limitations
 
-- **"Continue with Google" does not work.** Google answers with *"Couldn't sign
-  you in — this browser or app may not be secure."* The app sends a Chrome user
+- **"Continue with Google" does not work.** Google answers with _"Couldn't sign
+  you in — this browser or app may not be secure."_ The app sends a Chrome user
   agent, but Chromium's client hints still report the brands `Chromium` and
   `Not;A=Brand` without the `Google Chrome` brand that real Chrome sends, and
   Google's sign-in reads the structured identity rather than the UA string.
@@ -110,6 +110,7 @@ it from **File → Settings file…**, edit, and restart.
   instead — neither involves a third-party browser check. If your account has
   only ever used Google SSO, set an OpenAI password via password reset in a
   normal browser first, then use email + password here.
+
 - **Global hotkey on Wayland.** Global shortcuts are an X11 mechanism; a Wayland
   compositor owns the keyboard and will not hand out global grabs, so
   `toggleShortcut` may silently do nothing. Bind `chatgpt-linux` to a key in your
